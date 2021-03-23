@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Member from './Member';
 import MemberForm from './MemberForm';
+import axios from '../axios';
+import { v4 as uuid } from 'uuid';
 
 // 👉 the shape of the state that drives the form
 const initialFormValues = {
@@ -13,50 +15,51 @@ const initialFormValues = {
 }
 
 export default function App() {
-  const [friends, setFriends] = useState([])
+  const [members, setMembers] = useState([])
 
   // Using State to hold form values
   const [formValues, setFormValues] = useState(initialFormValues);
 
+  //  The function below takes in the name of an input and its value, and updates `formValues`
   const updateForm = (inputName, inputValue) => {
-    // 🔥 STEP 8 - IMPLEMENT a "form state updater" which will be used inside the inputs' `onChange` handler
-    //  It takes in the name of an input and its value, and updates `formValues`
+
     setFormValues({...formValues, [inputName]: inputValue});
+
   };
 
+  // The submitForm function will be used inside the form and will fire when the submit button is pressed. It will create a new Member object, trimming any whitespace from the user form input
   const submitForm = () => {
-    // 🔥 STEP 9 - IMPLEMENT a submit function which will be used inside the form's own `onSubmit`
-    //  a) make a new friend object, trimming whitespace from username and email
-    //  b) prevent further action if either username or email or role is empty string after trimming
-    const newFriend = {
-      username: formValues.username.trim(),
+
+    const newMember = {
+      id: uuid();
+      name: formValues.name.trim(),
       email: formValues.email.trim(),
       role: formValues.role
     };
 
-    if (!newFriend.username || !newFriend.email || !newFriend.role) {
+    // The if statement below prevents further action by the function if any of the input values is an empty string after trimming/dropdown selection
+    if (!newMember.name || !newMember.email || !newMember.role) {
       return;
     }
-    //  c) POST new friend to backend, and on success update the list of friends in state with the new friend from API
+    // Use POST to send the new member to backend, and on success updates the list of team members in state with the new member from API and clears the form
     axios
-      .post('fakeapi.com', newFriend)
+      .post('fakeapi.com', newMember)
       .then(res => {
-        setFriends([newFriend, ...friends]);
+        setFriends([newMember, ...members]);
         setFormValues(initialFormValues);
       })
       .catch(err=> {console.log(err)})
-    //  d) also on success clear the form
   }
 
   useEffect(() => {
-    axios.get('fakeapi.com').then(res => setFriends(res.data))
+    axios.get('fakeapi.com').then(res => setMembers(res.data))
   }, [])
 
   return (
-    <div className='container'>
+    <section className='container'>
       <h1>Form App</h1>
 
-      <FriendForm
+      <MemberForm
         // 🔥 STEP 2 - The form component needs its props.
         //  Check implementation of FriendForm
         //  to see what props it expects.
@@ -66,12 +69,12 @@ export default function App() {
       />
 
       {
-        friends.map(friend => {
+        members.map(member => {
           return (
-            <Friend key={friend.id} details={friend} />
+            <Member key={member.id} details={member} />
           )
         })
       }
-    </div>
+    </section>
   )
 }
