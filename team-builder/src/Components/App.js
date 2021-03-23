@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Member from './Member';
 import MemberForm from './MemberForm';
-import axios from '../axios';
+import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 
 // 👉 the shape of the state that drives the form
@@ -31,7 +31,7 @@ export default function App() {
   const submitForm = () => {
 
     const newMember = {
-      id: uuid();
+      id: uuid(),
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       role: formValues.role
@@ -45,7 +45,7 @@ export default function App() {
     axios
       .post('fakeapi.com', newMember)
       .then(res => {
-        setFriends([newMember, ...members]);
+        setMembers([newMember, ...members]);
         setFormValues(initialFormValues);
       })
       .catch(err=> {console.log(err)})
