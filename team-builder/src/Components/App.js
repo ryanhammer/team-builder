@@ -19,7 +19,7 @@ const initialMembersList = [
   },
   {
     id: uuid(),
-    name: 'Annakin S.',
+    name: 'Anakin S.',
     email: 'Ani_S@padawan.temple',
     role: 'Jedi Padawan',
   },
@@ -64,7 +64,7 @@ export default function App() {
     if (!newMember.name || !newMember.email || !newMember.role) {
       return;
     }
-    // Use POST to send the new member to backend, and on success updates the list of team members in state with the new member from API and clears the form
+    // If each input in the form has a value entered, the form data is added to the team members array as a new member object and the form is cleared
     else {
       setMembers([newMember, ...members]);
       setFormValues(initialFormValues);
@@ -77,9 +77,6 @@ export default function App() {
         <h1>Form App</h1>
 
         <MemberForm
-          // 🔥 STEP 2 - The form component needs its props.
-          //  Check implementation of FriendForm
-          //  to see what props it expects.
           values={formValues}
           update={updateForm}
           submit={submitForm}

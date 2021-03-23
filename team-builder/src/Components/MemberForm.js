@@ -14,25 +14,21 @@ export default function MemberForm(props) {
     update(name, value);
   }
 
+  // The function below handles form submission events
   const onSubmit = evt => {
-    // 🔥 STEP 7 - IMPLEMENT the submit handler
-    // a) don't allow the browser to reload!
+
+    // Preventing the browser from reloading when the form submits
     evt.preventDefault();
-    // c) use the `submit` callback coming in through props
+
+    // Invoke the submit function that was passed in as a prop
     submit();
   }
 
   return (
     <form className='container' onSubmit={onSubmit}>
       <section className='form-group inputs'>
-        {/* ////////// TEXT INPUTS ////////// */}
-        {/* ////////// TEXT INPUTS ////////// */}
-        {/* ////////// TEXT INPUTS ////////// */}
+        {/* There are three inputs for the form: Name and Email, which will take in text and email types respectively, and a dropdown for the different possible team menber roles */}
         <label>Name
-          {/* 🔥 STEP 3 - Make an input of type `text` for username.
-              Controlled inputs need `value` and `onChange` props.
-              Inputs render what they're told - their current value comes from app state.
-              At each keystroke, a change handler fires to change app state. */}
           <input 
             type="text"
             name="name"
@@ -41,11 +37,9 @@ export default function MemberForm(props) {
             placeholder="Enter team member name"
             maxLength="35"
           />
-
         </label>
 
         <label>Email
-          {/* 🔥 STEP 4 - Make an input of type `email` or `text` for email. */}
           <input 
             type="email"
             name="email"
@@ -56,7 +50,6 @@ export default function MemberForm(props) {
         </label>
 
         <label>Role
-
           <select
             name="role"
             value={values.role}
