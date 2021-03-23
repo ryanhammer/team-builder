@@ -23,7 +23,7 @@ export default function MemberForm(props) {
   }
 
   return (
-    <form className='form container' onSubmit={onSubmit}>
+    <form className='container' onSubmit={onSubmit}>
       <section className='form-group inputs'>
         {/* ////////// TEXT INPUTS ////////// */}
         {/* ////////// TEXT INPUTS ////////// */}
@@ -63,8 +63,9 @@ export default function MemberForm(props) {
             onChange={onChange} >
             <option value="">-- Select a Role --</option>
             <option value="jedi">Jedi Knight</option>
+            <option value="padawan">Jedi Padawan</option>
             <option value="sith">Sith Lord</option>
-            <option value="padawan">Padawan</option>
+            <option value="apprentice">Sith Apprentice</option>
           </select>
         </label>
 

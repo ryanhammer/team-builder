@@ -1,10 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import Member from './Member';
 import MemberForm from './MemberForm';
-import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 
-// 👉 the shape of the state that drives the form
+// Create some initial Team Member data; the uuid() function will be used to generate random user ids to use as keys
+const initialMembersList = [
+  {
+    id: uuid(),
+    name: 'Qui-Gon',
+    email: 'QGJinn@jediknight.temple',
+    role: 'Jedi Knight',
+  },
+  {
+    id: uuid(),
+    name: 'Darth Maul',
+    email: 'darthmaul@sith.apprentice',
+    role: 'Sith Apprentice',
+  },
+  {
+    id: uuid(),
+    name: 'Annakin S.',
+    email: 'Ani_S@padawan.temple',
+    role: 'Jedi Padawan',
+  },
+];
+
+// Initializing the shape of the state that drives the form
 const initialFormValues = {
   // This will be a text input
   name: '',
@@ -15,7 +36,9 @@ const initialFormValues = {
 }
 
 export default function App() {
-  const [members, setMembers] = useState([])
+
+  // Use State to hold member data
+  const [members, setMembers] = useState(initialMembersList);
 
   // Using State to hold form values
   const [formValues, setFormValues] = useState(initialFormValues);
@@ -42,39 +65,34 @@ export default function App() {
       return;
     }
     // Use POST to send the new member to backend, and on success updates the list of team members in state with the new member from API and clears the form
-    axios
-      .post('fakeapi.com', newMember)
-      .then(res => {
-        setMembers([newMember, ...members]);
-        setFormValues(initialFormValues);
-      })
-      .catch(err=> {console.log(err)})
+    else {
+      setMembers([newMember, ...members]);
+      setFormValues(initialFormValues);
+    }
   }
 
-  useEffect(() => {
-    axios.get('fakeapi.com').then(res => setMembers(res.data))
-  }, [])
-
   return (
-    <section className='container'>
-      <h1>Form App</h1>
+    <body>
+      <section className='container'>
+        <h1>Form App</h1>
 
-      <MemberForm
-        // 🔥 STEP 2 - The form component needs its props.
-        //  Check implementation of FriendForm
-        //  to see what props it expects.
-        values={formValues}
-        update={updateForm}
-        submit={submitForm}
-      />
+        <MemberForm
+          // 🔥 STEP 2 - The form component needs its props.
+          //  Check implementation of FriendForm
+          //  to see what props it expects.
+          values={formValues}
+          update={updateForm}
+          submit={submitForm}
+        />
 
-      {
-        members.map(member => {
-          return (
-            <Member key={member.id} details={member} />
-          )
-        })
-      }
-    </section>
+        {
+          members.map(member => {
+            return (
+              <Member key={member.id} details={member} />
+            )
+          })
+        }
+      </section>
+    </body>
   )
 }
