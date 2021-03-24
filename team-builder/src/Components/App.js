@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid';
 const initialMembersList = [
   {
     id: uuid(),
-    name: 'Qui-Gon',
+    name: 'Qui-Gon Jinn',
     email: 'QGJinn@jediknight.temple',
     role: 'Jedi Knight',
   },
@@ -19,7 +19,7 @@ const initialMembersList = [
   },
   {
     id: uuid(),
-    name: 'Anakin S.',
+    name: 'Anakin Sky-Guy',
     email: 'Ani_S@padawan.temple',
     role: 'Jedi Padawan',
   },
@@ -74,7 +74,7 @@ export default function App() {
   return (
     <body>
       <section className='container'>
-        <h1>Form App</h1>
+        <h1>Add New Team Members!</h1>
 
         <MemberForm
           values={formValues}
@@ -82,6 +82,7 @@ export default function App() {
           submit={submitForm}
         />
 
+        <h2>Check Out Our Current Team!</h2>
         {
           members.map(member => {
             return (

@@ -3,9 +3,10 @@
 }
 body {
   background-color: rgb(244, 244, 244);
-  color: rgb(65, 75, 60);
+  color: white;
   font-family: 'Bitter', serif;
   padding: 32px;
+  background-image: url('./download2.jpeg');
 }
 .container {
   border: 1px solid rgb(210, 210, 210);
@@ -14,31 +15,49 @@ body {
   padding: 32px;
   background-color: white;
   margin-bottom: 24px;
+  background-image: url('./download.jpeg');
 }
 h1, h2, h3, h4 {
-  color: royalblue;
+  color: #FFE81F;
 }
 h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
+  text-align: center;
 }
 h2 {
-  font-size: 1.2rem;
-  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
 }
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
 label {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  color: white;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 input, select, button {
   height: 1.5rem;
   width: 150px;
   margin: 8px 8px 8px 0;
 }
 button {
-  color: crimson;
+  color: blue;
   background-color: white;
-  border: 1px solid crimson;
+  border: 1px solid blue;
 
   &:disabled {
     cursor: not-allowed;

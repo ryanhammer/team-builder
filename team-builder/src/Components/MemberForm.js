@@ -26,20 +26,20 @@ export default function MemberForm(props) {
 
   return (
     <form className='container' onSubmit={onSubmit}>
-      <section className='form-group inputs'>
+      <section className='form-group'>
         {/* There are three inputs for the form: Name and Email, which will take in text and email types respectively, and a dropdown for the different possible team menber roles */}
-        <label>Name
+        <label>Name: 
           <input 
             type="text"
             name="name"
             onChange={onChange}
             value={values.name}
-            placeholder="Enter team member name"
+            placeholder="Add member name"
             maxLength="35"
           />
         </label>
 
-        <label>Email
+        <label>Email:
           <input 
             type="email"
             name="email"
@@ -49,16 +49,16 @@ export default function MemberForm(props) {
           />
         </label>
 
-        <label>Role
+        <label>Role:
           <select
             name="role"
             value={values.role}
             onChange={onChange} >
             <option value="">-- Select a Role --</option>
-            <option value="jedi">Jedi Knight</option>
-            <option value="padawan">Jedi Padawan</option>
-            <option value="sith">Sith Lord</option>
-            <option value="apprentice">Sith Apprentice</option>
+            <option value="Jedi Knight">Jedi Knight</option>
+            <option value="Jedi Padawan">Jedi Padawan</option>
+            <option value="Sith Lord">Sith Lord</option>
+            <option value="Sith Apprentice">Sith Apprentice</option>
           </select>
         </label>
 
